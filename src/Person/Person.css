@@ -11,3 +11,7 @@
 .sith > .title {
     color: blue;
 }
+
+.tall {
+    height: 100px;
+}
