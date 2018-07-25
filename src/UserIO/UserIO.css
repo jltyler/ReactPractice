@@ -1,0 +1,17 @@
+.useroutput {
+    border: 1px solid #555;
+    padding: 10px;
+    margin: 10px auto;
+    background-color: antiquewhite;
+}
+
+.useroutput h2 {
+    margin: 0 auto 10px;
+}
+
+.userinput {
+    font-size: 32pt;
+    background-color: #222;
+    color: aliceblue;
+    padding: 3px 10px;
+}

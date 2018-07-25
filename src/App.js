@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person';
-import PersonClass from './Person/PersonClass';
+import UserOutput from './UserIO/UserOutput';
+import UserInput from './UserIO/UserInput';
+import './UserIO/UserIO.css';
 
 class App extends Component {
   state = {
@@ -10,9 +11,10 @@ class App extends Component {
       name: 'Dudemang',
       title: 'guy who doesn\'t afraid of anything.',
     },
+    username: "Juicy Jokerwaa",
   }
 
-  toggleDisplayOthers = () => {
+  toggleDisplayOthers = (e) => {
     this.setState({
       displayOthers: !this.state.displayOthers,
     })
@@ -27,19 +29,19 @@ class App extends Component {
     })
   }
 
+  changeUsername = (e) => {
+    this.setState({
+      username: e.target.value,
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        {this.state.displayOthers && 
-        <div>
-        <h1>Hello there...</h1>
-        <Person name="Money" title="Trillionayre"/>
-        <h2>I am</h2>
-        <Person name={this.state.person.name} title={this.state.person.title} textChange={this.changeName.bind(this)}>WOAH WOAH!</Person>
-        </div>
-        }
-        <PersonClass clickAction={this.toggleDisplayOthers}/>
-        <PersonClass>Hmmm....</PersonClass>
+        <UserInput username={this.state.username} changeHandler={this.changeUsername} />
+        <UserOutput username={this.state.username} />
+        <hr />
+        <UserOutput username={this.state.username} />
       </div>
     );
   }
