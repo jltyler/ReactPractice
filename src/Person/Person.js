@@ -12,6 +12,7 @@ const person = (props) => {
         <p className="sith">Darth <span className="name">{props.name}</span> {Common.choice(['the', 'a', 'some'])} <span className="title">{props.title}</span></p>
         {props.children && <p className="tall">{props.children}</p>}
         <button onClick={(e) => printChilluns(props)}>printChilluns</button>
+        {props.textChange && <input type="text" onChange={props.textChange} value={props.name} />}
         </div>
     )
     return x
