@@ -53,7 +53,7 @@ class Person extends React.Component {
                 <h2>Classy</h2>
         <p className="sith">Darth <span className="name">{this.state.name}</span> {Common.choice(['the', 'a', 'some'])} <span className="title">{this.state.title}</span></p>
         {this.props.children && <p className="tall">{this.props.children}</p>}
-        {(this.state.tag && this.state.tag != '') && <p>{this.state.tag}</p>}
+        {(this.state.tag && this.state.tag !== '') && <p>{this.state.tag}</p>}
         <button onClick={this.changeName}>Change name</button>
         </div>
         );
