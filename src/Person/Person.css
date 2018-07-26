@@ -4,12 +4,13 @@
     display: inline-block;
 }
 
-.sith > .name {
+.namecard .name {
     color: red;
 }
 
-.sith > .title {
+.namecard .title {
     color: blue;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .tall {

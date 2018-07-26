@@ -22,7 +22,7 @@ class App extends Component {
   toggleDisplayOthers = () => {
     this.setState({
       displayOthers: !this.state.displayOthers,
-    })
+    });
   }
 
   changeName = (e) => {
@@ -31,15 +31,17 @@ class App extends Component {
         name: e.target.value,
         title: this.state.person.title,
       }
-    })
+    });
   }
 
   changePersonName = (index, event) => {
-    let newPeople = this.state.people;
-    newPeople[index].name = event.target.value; 
+    let peopleCopy = [...this.state.people];
+    let personCopy = {...peopleCopy[index]};
+    personCopy.name = event.target.value;
+    peopleCopy[index] = personCopy;
     this.setState({
-      people: newPeople
-    })
+      people: peopleCopy
+    });
   }
 
   render() {
@@ -57,7 +59,7 @@ class App extends Component {
         <PersonClass>Hmmm....</PersonClass>
         {this.state.people && this.state.people.length &&
         <div>
-          {this.state.people.map((p, i) => <Person name={p.name} title={p.title} textChange={this.changePersonName.bind(this, i)} />)}
+          {this.state.people.map((p, i) => <Person name={p.name} title={p.title} textChange={this.changePersonName.bind(this, i)} key={'prsn'+i} />)}
         </div>
         }
       </div>
