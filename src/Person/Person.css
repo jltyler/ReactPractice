@@ -15,3 +15,12 @@
 .tall {
     height: 100px;
 }
+
+.namecard {
+    max-width: 800px;
+    min-width: 500px;
+    margin: 10px auto;
+    padding: 40px 200px;
+    background-color: aliceblue;
+    border: 1px solid royalblue;
+}

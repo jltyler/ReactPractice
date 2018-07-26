@@ -5,11 +5,18 @@ import PersonClass from './Person/PersonClass';
 
 class App extends Component {
   state = {
-    displayOthers: true,
+    displayOthers: false,
     person: {
       name: 'Dudemang',
       title: 'guy who doesn\'t afraid of anything.',
     },
+    people: [
+      {name: 'Megaman', title: 'Super Fighting Robot'},
+      {name: 'Data', title: 'More human than any of us'},
+      {name: 'Amos', title: 'That Guy'},
+      {name: 'Garthpetersans', title: 'Living in a Society'},
+      {name: 'Cackletta', title: 'That one laser eye attack'},
+    ],
   }
 
   toggleDisplayOthers = () => {
@@ -27,6 +34,14 @@ class App extends Component {
     })
   }
 
+  changePersonName = (index, event) => {
+    let newPeople = this.state.people;
+    newPeople[index].name = event.target.value; 
+    this.setState({
+      people: newPeople
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -40,6 +55,11 @@ class App extends Component {
         }
         <PersonClass clickAction={this.toggleDisplayOthers}/>
         <PersonClass>Hmmm....</PersonClass>
+        {this.state.people && this.state.people.length &&
+        <div>
+          {this.state.people.map((p, i) => <Person name={p.name} title={p.title} textChange={this.changePersonName.bind(this, i)} />)}
+        </div>
+        }
       </div>
     );
   }

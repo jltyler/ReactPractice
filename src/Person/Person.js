@@ -8,11 +8,11 @@ const printChilluns = (props) => {
 
 const person = (props) => {
     const x = (
-        <div>
-        <p className="sith">Darth <span className="name">{props.name}</span> {Common.choice(['the', 'a', 'some'])} <span className="title">{props.title}</span></p>
-        {props.children && <p className="tall">{props.children}</p>}
-        <button onClick={(e) => printChilluns(props)}>printChilluns</button>
-        {props.textChange && <input type="text" onChange={props.textChange} value={props.name} />}
+        <div className="namecard">
+            <h2>Darth <span className="name">{props.name}</span></h2>
+            <h3 className="title">{props.title}</h3>
+            {props.children && <p>{props.children}</p>}
+            {props.textChange && <input type="text" onChange={props.textChange} value={props.name} />}
         </div>
     )
     return x
