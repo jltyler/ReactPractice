@@ -1,67 +1,45 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person';
-import PersonClass from './Person/PersonClass';
+import Validator from './Validator';
+import Char from './Char'
 
 class App extends Component {
   state = {
-    displayOthers: false,
-    person: {
-      name: 'Dudemang',
-      title: 'guy who doesn\'t afraid of anything.',
-    },
-    people: [
-      {name: 'Megaman', title: 'Super Fighting Robot'},
-      {name: 'Data', title: 'More human than any of us'},
-      {name: 'Amos', title: 'That Guy'},
-      {name: 'Garthpetersans', title: 'Living in a Society'},
-      {name: 'Cackletta', title: 'That one laser eye attack'},
-    ],
-  }
+    inputLength: 0,
+    charString: '',
+  };
 
-  toggleDisplayOthers = () => {
+  validatorInput = (e) => {
     this.setState({
-      displayOthers: !this.state.displayOthers,
+      inputLength: e.target.value.length
     });
   }
 
-  changeName = (e) => {
+  charInput = (e) => {
     this.setState({
-      person: {
-        name: e.target.value,
-        title: this.state.person.title,
-      }
+      charString: e.target.value
     });
   }
 
-  changePersonName = (index, event) => {
-    let peopleCopy = [...this.state.people];
-    let personCopy = {...peopleCopy[index]};
-    personCopy.name = event.target.value;
-    peopleCopy[index] = personCopy;
+  removeChar = (i, e) => {
+    const charList = this.state.charString.split('');
+    charList.splice(i, 1)
     this.setState({
-      people: peopleCopy
-    });
+      charString: charList.join('')
+    })
   }
 
   render() {
     return (
       <div className="App">
-        {this.state.displayOthers && 
-        <div>
-        <h1>Hello there...</h1>
-        <Person name="Money" title="Trillionayre"/>
-        <h2>I am</h2>
-        <Person name={this.state.person.name} title={this.state.person.title} textChange={this.changeName.bind(this)}>WOAH WOAH!</Person>
-        </div>
-        }
-        <PersonClass clickAction={this.toggleDisplayOthers}/>
-        <PersonClass>Hmmm....</PersonClass>
-        {this.state.people && this.state.people.length &&
-        <div>
-          {this.state.people.map((p, i) => <Person name={p.name} title={p.title} textChange={this.changePersonName.bind(this, i)} key={'prsn'+i} />)}
-        </div>
-        }
+        <input type="text" onChange={this.validatorInput} />
+        <h4>{this.state.inputLength}</h4>
+        <Validator textLength={this.state.inputLength}/>
+        <input type="text" onChange={this.charInput} value={this.state.charString}/>
+        <br />
+        {this.state.charString.split('').map((c, i) => {
+          return <Char char={c} key={c+i} removeHandler={this.removeChar.bind(this, i)} />
+        })}
       </div>
     );
   }
