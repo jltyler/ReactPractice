@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 import PersonClass from './Person/PersonClass';
-import Radium, {StyleRoot} from 'radium';
 
 class App extends Component {
   state = {
@@ -61,7 +60,6 @@ class App extends Component {
 
   render() {
     return (
-      <StyleRoot>
       <div className="App">
       {this.state.displayOthers ? 
       <button style={{...this.buttonStyleBase, ...this.buttonStyleOn}} onClick={this.toggleDisplayOthers} >Hide Others</button>:
@@ -85,7 +83,6 @@ class App extends Component {
         </div>
         }
       </div>
-      </StyleRoot>
     );
   }
 }
