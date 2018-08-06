@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 import PersonClass from './Person/PersonClass';
-import Radium from 'radium';
+import Radium, {StyleRoot} from 'radium';
 
 class App extends Component {
   state = {
@@ -28,16 +28,10 @@ class App extends Component {
 
   buttonStyleOn = {
     backgroundColor: 'red',
-    ':hover': {
-      backgroundColor: 'white',
-    },
   }
 
   buttonStyleOff = {
     backgroundColor: 'lime',
-    ':hover': {
-      backgroundColor: 'purple',
-    },
   }
 
   toggleDisplayOthers = () => {
@@ -67,6 +61,7 @@ class App extends Component {
 
   render() {
     return (
+      <StyleRoot>
       <div className="App">
       {this.state.displayOthers ? 
       <button style={{...this.buttonStyleBase, ...this.buttonStyleOn}} onClick={this.toggleDisplayOthers} >Hide Others</button>:
@@ -74,9 +69,12 @@ class App extends Component {
         {this.state.displayOthers && 
         <div>
         <h1>Hello there...</h1>
+        
         <Person name="Money" title="Trillionayre"/>
         <h2>I am</h2>
+        
         <Person name={this.state.person.name} title={this.state.person.title} textChange={this.changeName.bind(this)}>WOAH WOAH!</Person>
+        
         </div>
         }
         <PersonClass clickAction={this.toggleDisplayOthers}/>
@@ -87,7 +85,8 @@ class App extends Component {
         </div>
         }
       </div>
+      </StyleRoot>
     );
   }
 }
-export default Radium(App);
+export default App;
