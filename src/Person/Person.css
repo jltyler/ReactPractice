@@ -4,11 +4,11 @@
     display: inline-block;
 }
 
-.namecard .name {
+:global .name {
     color: red;
 }
 
-.namecard .title {
+:global .title {
     color: blue;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
