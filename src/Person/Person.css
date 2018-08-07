@@ -1,20 +1,10 @@
-.sith {
-    background-color: rgb(184, 147, 199);
-    color: rgba(0, 0, 0, 0.5);
-    display: inline-block;
-}
-
-:global .name {
+.name {
     color: red;
 }
 
-:global .title {
+.title {
     color: blue;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.tall {
-    height: 100px;
 }
 
 .namecard {
