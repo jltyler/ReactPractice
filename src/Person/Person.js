@@ -1,16 +1,33 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './Person.css';
 
-const person = (props) => {
-    const x = (
-        <div className="namecard" >
-            <h2>Darth <span className="name">{props.name}</span></h2>
-            <h3 className="title">{props.title}</h3>
-            {props.children && <p>{props.children}</p>}
-            {props.textChange && <input type="text" onChange={props.textChange} value={props.name} />}
-        </div>
-    );
-    return x
+class Person extends Component {
+
+    constructor(props) {
+        super(props);
+        console.log('Person.constructor()');
+    }
+
+    componentWillMount() {
+        console.log('Person.componentWillMount()');
+    }
+
+    render() {
+        console.log('Person.render()');
+        return (
+            <div className="namecard" >
+                <h2>Darth <span className="name">{this.props.name}</span></h2>
+                <h3 className="title">{this.props.title}</h3>
+                {this.props.children && <p>{this.props.children}</p>}
+                {this.props.textChange && <input type="text" onChange={this.props.textChange} value={this.props.name} />}
+            </div>
+        );
+
+    }
+
+    componentDidMount() {
+        console.log('Person.componentDidMount()');
+    }
 }
 
-export default person;
+export default Person;
