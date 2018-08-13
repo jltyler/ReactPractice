@@ -20,6 +20,8 @@ class Person extends Component {
                 <h3 className="title">{this.props.title}</h3>
                 {this.props.children && <p>{this.props.children}</p>}
                 {this.props.textChange && <input type="text" onChange={this.props.textChange} value={this.props.name} />}
+                <br />
+                {this.props.deleteHandler && <button onClick={this.props.deleteHandler}>Remove this person!</button>}
             </div>
         );
 
@@ -27,6 +29,11 @@ class Person extends Component {
 
     componentDidMount() {
         console.log('Person.componentDidMount()');
+    }
+
+    componentWillUnmount() {
+        console.log('Person.componentWillUnmount()');
+
     }
 }
 
