@@ -3,13 +3,34 @@ import './Person.css';
 
 class Person extends Component {
 
+    state = {
+        name: 'unknown',
+    }
+
     constructor(props) {
         super(props);
         console.log('Person.constructor()');
     }
 
-    componentWillMount() {
-        console.log('Person.componentWillMount()');
+    componentDidMount() {
+        console.log('Person.componentDidMount()');
+        // Run async fetches or immediate state changes here
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        console.log('Person.getDerivedStateFromProps()');
+        return {
+            name: props.name,
+        }
+    }
+
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        console.log('Person.getSnapshotBeforeUpdate()');
+        return "Kashmoney"
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('Person.componentDidUpate()');
     }
 
     render() {
@@ -25,10 +46,6 @@ class Person extends Component {
             </div>
         );
 
-    }
-
-    componentDidMount() {
-        console.log('Person.componentDidMount()');
     }
 
     componentWillUnmount() {

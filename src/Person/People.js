@@ -22,26 +22,30 @@ class People extends Component {
         console.log('People.constructor()');
     }
 
-    componentWillMount() {
-        console.log('People.componentWillMount()');
-    }
-
     toggleShowPeople = (e) => {
         this.setState({
             showPeople: !this.state.showPeople,
         });
     }
 
+    static getDerivedStateFromProps(props, state) {
+        console.log('People.getDerivedStateFromProps()');
+        return null
+    }
+
     removePerson = (index, e) => {
         const peopleCopy = [...this.state.people]
-        // console.log('removePerson(', index, ')')
-        // console.log('before:')
-        // peopleCopy.forEach(p => console.log(p.name, p.title))
         peopleCopy.splice(index, 1)
-        // console.log('after:')
-        // peopleCopy.forEach(p => console.log(p.name, p.title))
+        this.setState({
+            people: peopleCopy,
+        })
+    }
 
-
+    changeName = (index, e) => {
+        const peopleCopy = [...this.state.people]
+        const personCopy = {...peopleCopy[index]}
+        personCopy.name = e.target.value
+        peopleCopy.splice(index, 1, personCopy)
         this.setState({
             people: peopleCopy,
         })
@@ -53,7 +57,7 @@ class People extends Component {
             <div className="people">
             <ToggleButton clickHandler={this.toggleShowPeople} text={['Hide that nonsense!', 'Show me the money!']} status={this.state.showPeople} />
             { (this.state.showPeople ? this.state.people.map((p, i) => (
-                <Person name={p.name} title={p.title} key={'person'+i} deleteHandler={this.removePerson.bind(this, i)} />
+                <Person name={p.name} title={p.title} key={'person'+i} deleteHandler={this.removePerson.bind(this, i)} textChange={this.changeName.bind(this, i)} />
             )) : '')}
             </div>
         );
