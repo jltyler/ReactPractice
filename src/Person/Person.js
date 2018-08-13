@@ -29,6 +29,11 @@ class Person extends Component {
         return "Kashmoney"
     }
 
+    shouldComponentUpdate() {
+        console.log('Person.shouldComponentUpdate()');
+        return (Math.random() < .8 ? true : false )
+    }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log('Person.componentDidUpate()');
     }
