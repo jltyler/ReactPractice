@@ -18,9 +18,9 @@ class People extends Component {
     };
 
     toggleShowPeople = (e) => {
-        this.setState({
-            showPeople: !this.state.showPeople,
-        });
+        this.setState((prevState, props) => ({
+            showPeople: !prevState.showPeople,
+        }));
     }
 
     render() {
