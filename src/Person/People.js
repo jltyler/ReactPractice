@@ -9,6 +9,7 @@ const peopleTestData = [
     {name: 'Amos', title: 'That Guy'},
     {name: 'Garthpetersans', title: 'Living in a Society'},
     {name: 'Cackletta', title: 'That one laser eye attack'},
+    {name: 20, title: () => console.log('skreee!')}, // invalid types so prop-types can complain
 ];
 
 class People extends Component {
