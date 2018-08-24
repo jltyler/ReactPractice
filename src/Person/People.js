@@ -14,7 +14,7 @@ const peopleTestData = [
 class People extends Component {
     state = {
         people: peopleTestData,
-        showPeople: true,
+        showPeople: false,
     };
 
     toggleShowPeople = (e) => {
@@ -23,12 +23,27 @@ class People extends Component {
         }));
     }
 
+    changeName = (index, e) => {
+        // Put newName in closure since event will not stick around for long enough
+        const newName = e.target.value;
+        this.setState((prevState, props) => {
+            const peopleCopy = [...prevState.people];
+            const personCopy = {...peopleCopy[index]};
+            personCopy.name = newName;
+            peopleCopy.splice(index, 1, personCopy)
+            return {
+                people: peopleCopy,
+            }
+        })
+    }
+
     render() {
+        const rando = Math.floor(Math.random() * this.state.people.length);
         return (
             <div className="people">
             <ToggleButton clickHandler={this.toggleShowPeople} text={['Hide that nonsense!', 'Show me the money!']} status={this.state.showPeople} />
             { (this.state.showPeople ? this.state.people.map((p, i) => (
-                <Person name={p.name} title={p.title} key={'people'+i} />
+                <Person focus={(i === rando)} name={p.name} title={p.title} key={i} textChange={this.changeName.bind(this, i)}/>
             )) : '')}
             </div>
         );

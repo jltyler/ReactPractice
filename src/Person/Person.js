@@ -1,16 +1,27 @@
 import React from 'react';
 import './Person.css';
 
-const person = (props) => {
-    const x = (
-        <div className="namecard" >
-            <h2>Darth <span className="name">{props.name}</span></h2>
-            <h3 className="title">{props.title}</h3>
-            {props.children && <p>{props.children}</p>}
-            {props.textChange && <input type="text" onChange={props.textChange} value={props.name} />}
-        </div>
-    );
-    return x
+class Person extends React.Component {
+    inputElement = React.createRef()
+    
+    componentDidMount() {
+        if (this.props.focus)
+            this.inputElement.current.focus();
+    }
+
+    render() {
+        const x = (
+            <div className="namecard" >
+                <h2>Darth <span className="name">{this.props.name}</span></h2>
+                <h3 className="title">{this.props.title}</h3>
+                {this.props.children && <p>{this.props.children}</p>}
+                {this.props.textChange && <input type="text" onChange={this.props.textChange} value={this.props.name} ref={this.inputElement} />}
+            </div>
+        );
+        return x
+    }
+
+
 }
 
-export default person;
+export default Person;
