@@ -18,8 +18,14 @@ class Person extends React.Component {
 }
 
 Person.propTypes = {
-    name: PropTypes.string,
-    title: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    textChange: PropTypes.func,
 };
+
+Person.defaultProps = {
+    name: 'Default Name',
+    title: 'Default Title',
+}
 
 export default Person;
